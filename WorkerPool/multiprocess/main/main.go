@@ -10,15 +10,15 @@ func main() {
 	// create new tasks
 	tasks := []wppk.Task{
 		&wppk.EmailTask{Email: "akmyradowakmuhammet21@gmail.com", Subject: "test", MessageBody: "test"},
-		&wppk.ImageProcessingTask{ImageURL: "/images/sample1.jpg"},
+		&wppk.ImageProcessingTask{ImageURL: "/images/surat1.jpg"},
 		&wppk.EmailTask{Email: "akmyradowakmuhammet21@gmail.com", Subject: "test", MessageBody: "test"},
-		&wppk.ImageProcessingTask{ImageURL: "/images/sample2.jpg"},
+		&wppk.ImageProcessingTask{ImageURL: "/images/surat2.jpg"},
 		&wppk.EmailTask{Email: "akmyradowakmuhammet21@gmail.com", Subject: "test", MessageBody: "test"},
-		&wppk.ImageProcessingTask{ImageURL: "/images/sample3.jpg"},
+		&wppk.ImageProcessingTask{ImageURL: "/images/surat3.jpg"},
 		&wppk.EmailTask{Email: "akmyradowakmuhammet21@gmail.com", Subject: "test", MessageBody: "test"},
-		&wppk.ImageProcessingTask{ImageURL: "/images/sample4.jpg"},
+		&wppk.ImageProcessingTask{ImageURL: "/images/surat4.jpg"},
 		&wppk.EmailTask{Email: "akmyradowakmuhammet21@gmail.com", Subject: "test", MessageBody: "test"},
-		&wppk.ImageProcessingTask{ImageURL: "/images/sample5.jpg"},
+		&wppk.ImageProcessingTask{ImageURL: "/images/surat5.jpg"},
 	}
 
 	// Create a worker pool
