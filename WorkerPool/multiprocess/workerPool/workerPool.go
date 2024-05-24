@@ -20,7 +20,7 @@ type EmailTask struct {
 
 // Way to process the Email task
 func (t *EmailTask) Process() {
-	fmt.Printf("Sending email to %d\n", t.Email)
+	fmt.Printf("Sending email to %s\n", t.Email)
 	// Simulate a time consuming process
 	time.Sleep(2 * time.Second)
 }
