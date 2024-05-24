@@ -26,7 +26,7 @@ func main() {
 
 	for userID := 0; userID < 1000; userID++ {
 		wg.Add(1)
-
+ 
 		go buyTicket(&wg, userID, &tickets)
 	}
 
