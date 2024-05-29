@@ -9,7 +9,7 @@ func main() {
 	orders := make(chan string) // unbuffered channel
 
 	go func() {
-		for i := 1; i < 5; i++ {
+		for i := 1; i <= 5; i++ {
 			order := fmt.Sprintf("Coffee order #%d", i)
 			orders <- order // Blocks until barista is ready to accept
 			fmt.Println("Placed: ", order)
