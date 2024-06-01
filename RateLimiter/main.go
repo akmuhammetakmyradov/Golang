@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"sync"
 	"time"
 )
@@ -30,11 +31,14 @@ func NewRateLimiter() *RateLimiter {
 }
 
 func (rl *RateLimiter) cleanup() {
-	for {
-		time.Sleep(rl.interval)
+	ticker := time.NewTicker(rl.interval)
+	defer ticker.Stop()
+
+	for range ticker.C {
 		rl.mu.Lock()
+		now := time.Now()
 		for key, ts := range rl.timestamps {
-			if time.Since(ts) > rl.interval {
+			if now.Sub(ts) > rl.interval {
 				delete(rl.requests, key)
 				delete(rl.timestamps, key)
 			}
@@ -50,7 +54,7 @@ func (rl *RateLimiter) Allow(deviceID string) bool {
 	now := time.Now()
 
 	if ts, found := rl.timestamps[deviceID]; found {
-		if time.Since(ts) > rl.interval {
+		if now.Sub(ts) > rl.interval {
 			rl.requests[deviceID] = 0
 			rl.timestamps[deviceID] = now
 		}
@@ -66,3 +70,18 @@ func (rl *RateLimiter) Allow(deviceID string) bool {
 	return false
 }
 
+func main() {
+	// Example usage
+	rl := NewRateLimiter()
+	deviceID := "device123"
+
+	for i := 0; i < 30; i++ {
+		if rl.Allow(deviceID) {
+			println("Request allowed")
+		} else {
+			println("Request denied")
+			fmt.Println(i + 1)
+		}
+		time.Sleep(100 * time.Millisecond)
+	}
+}
