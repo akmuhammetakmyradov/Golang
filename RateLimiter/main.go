@@ -73,15 +73,17 @@ func (rl *RateLimiter) Allow(deviceID string) bool {
 func main() {
 	// Example usage
 	rl := NewRateLimiter()
-	deviceID := "device123"
+	deviceID := "device1"
+	deviceID2 := "device2"
+	deviceID3 := "device3"
 
 	for i := 0; i < 30; i++ {
-		if rl.Allow(deviceID) {
+		if rl.Allow(deviceID) && rl.Allow(deviceID2) && rl.Allow(deviceID3) {
 			println("Request allowed")
 		} else {
 			println("Request denied")
 			fmt.Println(i + 1)
 		}
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(200 * time.Millisecond)
 	}
 }
